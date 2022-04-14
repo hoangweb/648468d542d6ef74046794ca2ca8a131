@@ -20,6 +20,8 @@ jobs:
     timeout-minutes: 360
     steps:
     - uses: actions/checkout@master
+    - name: docker registry login
+      run: echo "${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}" | docker login ghcr.io --username admicro --password-stdin
     
     - name: Run cron
       if: success()
